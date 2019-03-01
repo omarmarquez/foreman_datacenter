@@ -47,11 +47,11 @@ module Api
 	param_group :device, :as => :create
 
 	def create
-	  @device = ::ForemanDatacenter::Device.new(device_params.merge(hosy_id: params[:host_id]))
+	  @device = ::ForemanDatacenter::Device.new(device_params.merge(host_id: params[:host_id]))
 	  process_response @device.save
 	end
 
-	api :PUT, "/foreman_datacenter/devices/:id/", N_("Update a rack group")
+	api :PUT, "/foreman_datacenter/devices/:id/", N_("Update a device")
 	param :id, :identifier, :required => true
 	param_group :device
 
@@ -59,7 +59,7 @@ module Api
 	  process_response @device.update(device_params)
 	end
 
-	api :DELETE, "/foreman_datacenter/devices/:id/", N_("Delete a rack group")
+	api :DELETE, "/foreman_datacenter/devices/:id/", N_("Delete a device")
 	param :id, :identifier, :required => true
 
 	def destroy
